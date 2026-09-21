@@ -1,5 +1,6 @@
 package com.example.vivu.presentation.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 
@@ -24,8 +25,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
@@ -47,6 +52,9 @@ import com.example.vivu.R
 import com.example.vivu.presentation.theme.ViVuTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.unit.sp
+
+
 data class SuggestionItem(val title: String, val icon: String)
 @Composable
 fun HomeScreen(){
@@ -63,6 +71,7 @@ fun HomeScreen(){
                 SearchBar()
             }
             item { SuggestionSection() }
+            item { Trending() }
         }
 
     }
@@ -185,22 +194,54 @@ fun SuggestionCard(item: SuggestionItem) {
 @Composable
 fun Trending(){
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.padding(10.dp).fillMaxWidth(),
     ){
-        Row {
+        Row ( modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically){
             Text(
                 text = "Đang thịnh hành",
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleLarge
 
             )
-            Button(onClick = {},
-                modifier = Modifier.size(60.dp,30.dp),
+            OutlinedButton(onClick = {},
+                modifier = Modifier.size(120.dp,40.dp),
                 colors = ButtonDefaults.buttonColors(
-
+                    containerColor = Color.White,
+                    contentColor = Color.Black
                 )
-                ) {
-
+            )
+            {
+                Text(text = "Xem thêm",
+                    fontSize = 12.sp)
+            }
+        }
+        OutlinedCard(
+            modifier = Modifier. fillMaxWidth().padding(16.dp),
+            shape = RoundedCornerShape(16.dp),
+            border = BorderStroke(1.dp,Color(0xFFE0E0E0)),
+            colors = CardDefaults.outlinedCardColors(
+                containerColor = Color.White,
+            ),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 6.dp
+            )
+        ){
+            Column (modifier = Modifier.padding(10.dp)){
+                Image(
+                    modifier = Modifier.fillMaxWidth().height(200.dp),
+                    painter = painterResource(R.drawable.ic_launcher_background),
+                    contentDescription = ""
+                )
+                Text(text = "Hồ Xuân Hương",
+                    fontSize = 16.sp,
+                    )
+                Text(
+                    text = "Đà Lạt • ⭐ 4.6 • 1,8k đánh giá",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
