@@ -57,13 +57,13 @@ import androidx.compose.ui.unit.sp
 
 data class SuggestionItem(val title: String, val icon: String)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(paddingValues: PaddingValues = PaddingValues(0.dp)){
     Column (Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.background)){
         HomeHeader()
         LazyColumn (
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),contentPadding = paddingValues,
             // Tạo khoảng trống ở trên/dưới của toàn bộ danh sách
-            contentPadding = PaddingValues(bottom = 24.dp, top = 16.dp),
+
             // Tự động tạo khoảng cách 16.dp giữa tất cả các phần tử (không cần dùng Spacer nữa)
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ){
